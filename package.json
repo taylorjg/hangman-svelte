@@ -1,5 +1,6 @@
 {
   "name": "hangman-svelte",
+  "description": "Hangman in Svelte",
   "version": "0.0.1",
   "scripts": {
     "eslint": "eslint .",
