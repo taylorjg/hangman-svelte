@@ -3,8 +3,10 @@
   import RemainingLives from './RemainingLives.svelte'
   import Word from './Word.svelte'
   import Letters from './Letters.svelte'
+  import Outcome from './Outcome.svelte'
   import { store } from './store'
   import { nextState } from './logic'
+  import * as C from './constants'
   $: word = $store.word
   $: goodGuesses = $store.goodGuesses
   $: badGuesses = $store.badGuesses
@@ -19,7 +21,11 @@
   <Version />
   <RemainingLives {remainingLives} />
   <Word {word} {goodGuesses} />
-  <Letters {goodGuesses} {badGuesses} {onChooseLetter} />
+  {#if gameState === C.GAME_STATES.IN_PROGRESS}
+    <Letters {goodGuesses} {badGuesses} {onChooseLetter} />
+  {:else}
+    <Outcome {outcome} />
+  {/if}
 </main>
 
 <style>
