@@ -19,6 +19,8 @@
   const onNewGame = () => store.update(() => INITIAL_STATE)
 </script>
 
+<svelte:body on:keypress={e => onChooseLetter(e.key.toUpperCase())} />
+
 <main>
   <Version />
   <RemainingLives {remainingLives} />
