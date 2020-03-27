@@ -1,30 +1,57 @@
 <script>
-	export let name
+	// import {version} from '../package.json'
+	const version = '0.0.1'
+  import { store } from './store'
+	import RemainingLives from './RemainingLives.svelte'
+	import Word from './Word.svelte'
+	import Letters from './Letters.svelte'
+	$: word = $store.word
+	$: goodGuesses = $store.goodGuesses
+	$: badGuesses = $store.badGuesses
+	$: remainingLives = $store.remainingLives
+
+  const chooseLetterHandler = letter => {
+		if (word.includes(letter)) {
+			store.update(oldState => {
+				return {
+					...oldState,
+					goodGuesses: oldState.goodGuesses.add(letter)
+				}
+			})
+		} else {
+			store.update(oldState => {
+				return {
+					...oldState,
+					badGuesses: oldState.badGuesses.add(letter),
+					remainingLives: oldState.remainingLives - 1
+				}
+			})
+		}
+  }
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<div class='version'>version: {version}</div>
+	<RemainingLives {remainingLives} />
+	<Word {word} {goodGuesses} />
+	<Letters {goodGuesses} {badGuesses} onChooseLetter={chooseLetterHandler} />
 </main>
 
 <style>
 	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+	.version {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		font-style: italic;
+		font-size: small;
 	}
 </style>
