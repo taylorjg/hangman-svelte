@@ -4,7 +4,8 @@
   import Word from './Word.svelte'
   import Letters from './Letters.svelte'
   import Outcome from './Outcome.svelte'
-  import { store } from './store'
+  import NewGame from './NewGame.svelte'
+  import { store, INITIAL_STATE } from './store'
   import { nextState } from './logic'
   import * as C from './constants'
   $: word = $store.word
@@ -15,6 +16,7 @@
   $: outcome = $store.outcome
 
   const onChooseLetter = letter => store.update(nextState(letter))
+  const onNewGame = () => store.update(() => INITIAL_STATE)
 </script>
 
 <main>
@@ -25,6 +27,7 @@
     <Letters {goodGuesses} {badGuesses} {onChooseLetter} />
   {:else}
     <Outcome {outcome} />
+    <NewGame {onNewGame} />
   {/if}
 </main>
 

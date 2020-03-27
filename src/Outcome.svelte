@@ -4,7 +4,7 @@
 </script>
 
 {#if outcome === C.OUTCOMES.WON}
-  <div>WON</div>
+  <div>You won :)</div>
 {:else}
-  <div>LOST</div>
+  <div>You lost :(</div>
 {/if}
