@@ -16,6 +16,11 @@
 </button>
 
 <style>
+  button {
+    margin: 2px;
+    font-family: monospace;
+    font-size: 18px;
+  }
   .available {
     color: blue;
     cursor: pointer;

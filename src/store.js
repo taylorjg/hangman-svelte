@@ -3,7 +3,7 @@ import * as C from './constants'
 
 export const store = writable({
   word: 'SVELTE',
-  goodGuesses: new Set(['E']),
-  badGuesses: new Set(['Z', 'U']),
+  goodGuesses: new Set(),
+  badGuesses: new Set(),
   remainingLives: C.MAX_LIVES
 })
