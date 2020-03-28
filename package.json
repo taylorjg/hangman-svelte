@@ -6,7 +6,7 @@
     "eslint": "eslint .",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public",
+    "start": "node server",
     "test": "jest src"
   },
   "devDependencies": {
@@ -25,7 +25,7 @@
     "svelte-jester": "^1.0.5"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "sirv-cli": "^0.4.4"
+    "axios": "^0.19.2",
+    "express": "^4.17.1"
   }
 }

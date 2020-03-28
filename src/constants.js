@@ -8,6 +8,7 @@ export const LETTER_MODES = {
 }
 
 export const GAME_STATES = {
+  CHOOSING_WORD: Symbol('CHOOSING_WORD'),
   IN_PROGRESS: Symbol('GAME_STATES.IN_PROGRESS'),
   GAME_OVER: Symbol('GAME_STATES.GAME_OVER')
 }

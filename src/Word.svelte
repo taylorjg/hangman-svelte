@@ -1,11 +1,16 @@
 <script>
   import { hideUnfoundLetters } from './logic'
   export let word
+  export let revealWord
   export let goodGuesses
   $: maskedWord = hideUnfoundLetters(word, goodGuesses)
 </script>
 
-<div class='word'>{maskedWord}</div>
+{#if revealWord}
+  <div class='word'>{word}</div>
+{:else}
+  <div class='word'>{maskedWord}</div>
+{/if}
 
 <style>
   .word {
