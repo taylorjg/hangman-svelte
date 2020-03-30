@@ -1,6 +1,5 @@
 <script>
-  // import { version } from '../package.json'
-  const version = '0.0.1'
+  import { version } from '../package.json'
 </script>
 
 <div class='version'>version: {version}</div>
