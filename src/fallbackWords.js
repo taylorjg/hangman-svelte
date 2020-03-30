@@ -1,21 +1,4 @@
-const FALLBACK_WORDS = [
-  'react',
-  'redux',
-  'angular',
-  'ember',
-  'jasmine',
-  'mocha',
-  'enzyme',
-  'javascript',
-  'ecmascript',
-  'haskell',
-  'pascal',
-  'scala',
-  'clojure',
-  'scheme',
-  'typescript',
-  'fortran'
-]
+import FALLBACK_WORDS from './fallbackWords.json'
 
 export const chooseFallbackWord = () => {
   const numWords = FALLBACK_WORDS.length
