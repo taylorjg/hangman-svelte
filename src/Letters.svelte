@@ -1,5 +1,5 @@
 <script>
-  import { getLetterMode } from './logic'
+  import * as L from './logic'
   import * as C from './constants'
   import LettersRow from './LettersRow.svelte'
   export let goodGuesses
@@ -7,7 +7,7 @@
   export let onChooseLetter
   $: letters = C.LETTERS.map(letter => ({
     letter,
-    mode: getLetterMode(letter, goodGuesses, badGuesses)
+    mode: L.getLetterMode(letter, goodGuesses, badGuesses)
   }))
   $: row1 = letters.slice(0, 9)
   $: row2 = letters.slice(9, 18)

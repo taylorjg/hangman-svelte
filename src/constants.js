@@ -14,7 +14,7 @@ export const GAME_STATES = {
 }
 
 export const OUTCOMES = {
-  IN_PROGRESS: Symbol('OUTCOMES.IN_PROGRESS'),
+  NONE: Symbol('OUTCOMES.NONE'),
   WON: Symbol('OUTCOMES.WON'),
   LOST: Symbol('OUTCOMES.LOST')
 }

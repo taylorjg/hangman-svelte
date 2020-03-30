@@ -1,6 +1,6 @@
 import * as C from './constants'
 
-export const hideUnfoundLetters = (word, goodGuesses) =>
+export const maskWord = (word, goodGuesses) =>
   Array.from(word)
     .map(letter => goodGuesses.has(letter) ? letter : '-')
     .join('')

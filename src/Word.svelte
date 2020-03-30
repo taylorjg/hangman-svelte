@@ -1,9 +1,9 @@
 <script>
-  import { hideUnfoundLetters } from './logic'
+  import * as L from './logic'
   export let word
   export let revealWord
   export let goodGuesses
-  $: maskedWord = hideUnfoundLetters(word, goodGuesses)
+  $: maskedWord = L.maskWord(word, goodGuesses)
 </script>
 
 {#if revealWord}

@@ -1,11 +1,11 @@
-import { hideUnfoundLetters, getLetterMode, nextState } from './logic'
+import * as L from './logic'
 import * as C from './constants'
 
 describe('logic', () => {
 
-  describe('hideUnfoundLetters', () => {
-    it('should hide letters that have not been found yet', () => {
-      const actual = hideUnfoundLetters('SVELTE', new Set(['E']))
+  describe('maskWord', () => {
+    it('should mask letters that have not been found yet', () => {
+      const actual = L.maskWord('SVELTE', new Set(['E']))
       expect(actual).toBe('--E--E')
     })
   })
@@ -13,17 +13,17 @@ describe('logic', () => {
   describe('getLetterMode', () => {
 
     it('should correctly identify an available letter', () => {
-      const actual = getLetterMode('A', new Set(), new Set())
+      const actual = L.getLetterMode('A', new Set(), new Set())
       expect(actual).toBe(C.LETTER_MODES.AVAILABLE)
     })
 
     it('should correctly identify a correct letter', () => {
-      const actual = getLetterMode('A', new Set(['A']), new Set())
+      const actual = L.getLetterMode('A', new Set(['A']), new Set())
       expect(actual).toBe(C.LETTER_MODES.CORRECT)
     })
 
     it('should correctly identify an incorrect letter', () => {
-      const actual = getLetterMode('A', new Set(), new Set(['A']))
+      const actual = L.getLetterMode('A', new Set(), new Set(['A']))
       expect(actual).toBe(C.LETTER_MODES.INCORRECT)
     })
   })
@@ -38,7 +38,7 @@ describe('logic', () => {
         gameState: C.GAME_STATES.GAME_OVER,
         outcome: C.OUTCOMES.WON
       }
-      const actual = nextState('A')(state)
+      const actual = L.nextState('A')(state)
       expect(actual).toEqual(state)
     })
   })

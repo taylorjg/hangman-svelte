@@ -1,15 +1,15 @@
 <script>
-  import { LETTER_MODES } from './constants'
+  import * as C from './constants'
   export let letter
   export let mode
   export let onChooseLetter
 </script>
 
 <button
-  class:available={mode === LETTER_MODES.AVAILABLE}
-  class:correct={mode === LETTER_MODES.CORRECT}
-  class:incorrect={mode === LETTER_MODES.INCORRECT}
-  disabled={mode !== LETTER_MODES.AVAILABLE}
+  class:available={mode === C.LETTER_MODES.AVAILABLE}
+  class:correct={mode === C.LETTER_MODES.CORRECT}
+  class:incorrect={mode === C.LETTER_MODES.INCORRECT}
+  disabled={mode !== C.LETTER_MODES.AVAILABLE}
   on:click={() => onChooseLetter(letter)}
 >
   {letter}
