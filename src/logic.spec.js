@@ -29,6 +29,7 @@ describe('logic', () => {
   })
 
   describe('nextState', () => {
+
     it('should do nothing when game is over', () => {
       const state = {
         word: 'SVELTE',
@@ -37,6 +38,32 @@ describe('logic', () => {
         remainingLives: C.MAX_LIVES,
         gameState: C.GAME_STATES.GAME_OVER,
         outcome: C.OUTCOMES.WON
+      }
+      const actual = L.nextState('A')(state)
+      expect(actual).toEqual(state)
+    })
+
+    it('should do nothing on re-entry of a previous good guess', () => {
+      const state = {
+        word: 'SVELTE',
+        goodGuesses: new Set(['E']),
+        badGuesses: new Set(),
+        remainingLives: C.MAX_LIVES,
+        gameState: C.GAME_STATES.IN_PROGRESS,
+        outcome: C.OUTCOMES.NONE
+      }
+      const actual = L.nextState('E')(state)
+      expect(actual).toEqual(state)
+    })
+
+    it('should do nothing on re-entry of a previous bad guess', () => {
+      const state = {
+        word: 'SVELTE',
+        goodGuesses: new Set(),
+        badGuesses: new Set(['A']),
+        remainingLives: C.MAX_LIVES - 1,
+        gameState: C.GAME_STATES.IN_PROGRESS,
+        outcome: C.OUTCOMES.NONE
       }
       const actual = L.nextState('A')(state)
       expect(actual).toEqual(state)

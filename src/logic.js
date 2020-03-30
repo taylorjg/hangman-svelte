@@ -18,6 +18,9 @@ export const nextState = letter => state => {
   if (state.gameState === C.GAME_STATES.GAME_OVER) {
     return state
   }
+  if (state.goodGuesses.has(letter) || state.badGuesses.has(letter)) {
+    return state
+  }
   if (state.word.includes(letter)) {
     const newGoodGuesses = addValueToSet(state.goodGuesses, letter)
     const wordAsSet = new Set(Array.from(state.word))
