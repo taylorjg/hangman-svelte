@@ -7,6 +7,7 @@
   import Letters from './Letters.svelte'
   import Outcome from './Outcome.svelte'
   import NewGame from './NewGame.svelte'
+  import ErrorPanel from './ErrorPanel.svelte'
   import { store, INITIAL_STATE } from './store'
   import * as L from './logic'
   import * as S from './services'
@@ -19,9 +20,15 @@
   $: outcome = $store.outcome
   $: revealWord = outcome === C.OUTCOMES.LOST
 
+  let errorMessage = ''
+  const onCloseErrorPanel = () => errorMessage = ''
+
+  const FALLBACK_MESSAGE = 'Network error - using local fallback list of words'
+
   const chooseWord = async () => {
     store.update(() => INITIAL_STATE)
-    const word = await S.chooseWord()
+    const { word, isFallback } = await S.chooseWord()
+    errorMessage = isFallback ? FALLBACK_MESSAGE : ''
     const gameState = C.GAME_STATES.IN_PROGRESS
     store.update(() => ({ ...INITIAL_STATE, word, gameState }))
   }
@@ -46,6 +53,9 @@
   {:else}
     <Outcome {outcome} />
     <NewGame {onNewGame} />
+  {/if}
+  {#if errorMessage}
+    <ErrorPanel {errorMessage} onClose={onCloseErrorPanel} />
   {/if}
 </main>
 

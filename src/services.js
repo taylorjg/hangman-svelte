@@ -4,8 +4,14 @@ import { chooseFallbackWord } from './fallbackWords'
 export const chooseWord = async () => {
   try {
     const response = await axios.get('/api/chooseWord')
-    return response.data.word
+    return {
+      word: response.data.word,
+      isFallback: false
+    }
   } catch (error) {
-    return chooseFallbackWord()
+    return {
+      word: chooseFallbackWord(),
+      isFallback: true
+    }
   }
 }
